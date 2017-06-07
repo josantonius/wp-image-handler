@@ -56,7 +56,7 @@ use Josantonius\WP_Image\WP_Image;
 ```php
 WP_Image::save(
 	'https://site.com/image.png', // Image url (Required)
-	'18'						  // Post ID   (Required)
+	'18'                          // Post ID   (Required)
 );
 ```
 
@@ -65,8 +65,8 @@ WP_Image::save(
 ```php
 WP_Image::save(
 	'https://site.com/image.png', // Image url   (Required)
-	'18',   					  // Post ID     (Required)
-	true						  // Is featured (Optional | Default: false)
+	'18',                         // Post ID     (Required)
+	true                          // Is featured (Optional | Default: false)
 );
 ```
 
