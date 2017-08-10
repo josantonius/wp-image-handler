@@ -80,4 +80,36 @@ class WP_Image {
 
         return wp_get_attachment_url($attach_id);
     }
+
+    /**
+     * Deletes an attachment and all of its derivatives.
+     * 
+     * @since 1.0.1
+     *
+     * @param int     $postID      → post id
+     * @param boolean $forceDelete → force deletion 
+     *
+     * @return int → attachments deleted
+     */
+    public static function deleteAttachment($postID, $forceDelete = false) {
+
+        $counter = 0;
+
+        $attachments = get_posts( array(
+            'post_type'      => 'attachment',
+            'posts_per_page' => -1,
+            'post_status'    => 'any',
+            'post_parent'    => $postID
+        ) );
+
+        foreach ($attachments as $attachment) {
+
+            if (wp_delete_attachment($attachment->ID) !== false) {
+
+                $counter++;
+            }
+        }
+
+        return $counter;
+    }
 }

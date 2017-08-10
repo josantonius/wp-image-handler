@@ -11,6 +11,7 @@ Guardar imágenes en WordPress.
 - [Instalación](#instalación)
 - [Requisitos](#requisitos)
 - [Cómo empezar y ejemplos](#cómo-empezar-y-ejemplos)
+- [Métodos disponibles](#métodos-disponibles)
 - [Uso](#uso)
 - [TODO](#-todo)
 - [Contribuir](#contribuir)
@@ -79,6 +80,35 @@ WP_Image::save(
 	true                         // Destacada  (Opcional | False por defecto)
 );
 ```
+
+### Eliminar adjuntos
+
+```php
+WP_Image::deleteAttachment(
+
+  18, // Post ID (Required)
+);
+```
+
+### Forzar eliminado de adjuntos
+
+```php
+WP_Image::deleteAttachment(
+
+  '18', // Post ID     (Required)
+  true  // Force delete (Optional | Default: false)
+);
+```
+
+## Métodos disponibles
+
+Métodos disponibles en esta biblioteca:
+
+```php
+WP_Image::save();
+WP_Image::deleteAttachment();
+```
+
 ## ☑ TODO
 
 - [ ] Agregar tests

@@ -11,6 +11,7 @@ Save images to WordPress.
 - [Installation](#installation)
 - [Requirements](#requirements)
 - [Quick Start and Examples](#quick-start-and-examples)
+- [Available Methods](#available-methods)
 - [Usage](#usage)
 - [TODO](#-todo)
 - [Contribute](#contribute)
@@ -78,6 +79,34 @@ WP_Image::save(
 	'18',                         // Post ID     (Required)
 	true                          // Is featured (Optional | Default: false)
 );
+```
+
+### Delete attachments
+
+```php
+WP_Image::deleteAttachment(
+
+  18, // Post ID (Required)
+);
+```
+
+### Force delete attachments
+
+```php
+WP_Image::deleteAttachment(
+
+  '18', // Post ID     (Required)
+  true  // Force delete (Optional | Default: false)
+);
+```
+
+## Available methods
+
+Available methods in this library:
+
+```php
+WP_Image::save();
+WP_Image::deleteAttachment();
 ```
 
 ## ☑ TODO
