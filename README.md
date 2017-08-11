@@ -84,7 +84,7 @@ WP_Image::save(
 ### Delete attachments
 
 ```php
-WP_Image::deleteAttachment(
+WP_Image::deleteAttachedImages(
 
   18, // Post ID (Required)
 );
@@ -93,7 +93,7 @@ WP_Image::deleteAttachment(
 ### Force delete attachments
 
 ```php
-WP_Image::deleteAttachment(
+WP_Image::deleteAttachedImages(
 
   '18', // Post ID     (Required)
   true  // Force delete (Optional | Default: false)
@@ -106,7 +106,7 @@ Available methods in this library:
 
 ```php
 WP_Image::save();
-WP_Image::deleteAttachment();
+WP_Image::deleteAttachedImages();
 ```
 
 ## ☑ TODO

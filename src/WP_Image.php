@@ -86,12 +86,12 @@ class WP_Image {
      * 
      * @since 1.0.1
      *
-     * @param int     $postID      → post id
-     * @param boolean $forceDelete → force deletion 
+     * @param int     $postID → post id
+     * @param boolean $force  → force deletion 
      *
      * @return int → attachments deleted
      */
-    public static function deleteAttachment($postID, $forceDelete = false) {
+    public static function deleteAttachedImages($postID, $force = false) {
 
         $counter = 0;
 
@@ -99,12 +99,13 @@ class WP_Image {
             'post_type'      => 'attachment',
             'posts_per_page' => -1,
             'post_status'    => 'any',
+            'post_mime_type' => 'image/jpeg, image/png, image/gif',
             'post_parent'    => $postID
         ) );
 
         foreach ($attachments as $attachment) {
 
-            if (wp_delete_attachment($attachment->ID) !== false) {
+            if (wp_delete_attachment($attachment->ID, $force) !== false) {
 
                 $counter++;
             }
