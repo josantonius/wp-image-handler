@@ -1,6 +1,6 @@
 # PHP WordPress Image
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/wp_image/v/stable)](https://packagist.org/packages/josantonius/wp_image) [![Total Downloads](https://poser.pugx.org/josantonius/wp_image/downloads)](https://packagist.org/packages/josantonius/wp_image) [![Latest Unstable Version](https://poser.pugx.org/josantonius/wp_image/v/unstable)](https://packagist.org/packages/josantonius/wp_image) [![License](https://poser.pugx.org/josantonius/wp_image/license)](https://packagist.org/packages/josantonius/wp_image)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/wp_image/v/stable)](https://packagist.org/packages/josantonius/wp_image) [![Total Downloads](https://poser.pugx.org/josantonius/wp_image/downloads)](https://packagist.org/packages/josantonius/wp_image) [![Latest Unstable Version](https://poser.pugx.org/josantonius/wp_image/v/unstable)](https://packagist.org/packages/josantonius/wp_image) [![License](https://poser.pugx.org/josantonius/wp_image/license)](https://packagist.org/packages/josantonius/wp_image) [![Travis](https://travis-ci.org/Josantonius/WP_Image.svg)](https://travis-ci.org/Josantonius/WP_Image)
 
 [English version](README.md)
 
@@ -13,21 +13,12 @@ Guardar imágenes en WordPress.
 - [Cómo empezar y ejemplos](#cómo-empezar-y-ejemplos)
 - [Métodos disponibles](#métodos-disponibles)
 - [Uso](#uso)
-- [TODO](#-todo)
+- [Tests](#tests)
+- [Tareas pendientes](#-tareas-pendientes)
 - [Contribuir](#contribuir)
 - [Repositorio](#repositorio)
 - [Licencia](#licencia)
 - [Copyright](#copyright)
-
----
-
-<p align="center"><strong>Echa un vistazo al código</strong></p>
-
-<p align="center">
-  <a href="https://youtu.be/nYA7S3_cxPs" title="Echa un vistazo al código">
-  	<img src="https://raw.githubusercontent.com/Josantonius/PHP-Algorithm/master/resources/youtube-thumbnail.jpg">
-  </a>
-</p>
 
 ---
 
@@ -109,12 +100,25 @@ WP_Image::save();
 WP_Image::deleteAttachedImages();
 ```
 
-## ☑ TODO
+### Tests 
 
-- [ ] Agregar tests
-- [ ] Ampliar método para recibir imagen como datos
+Para ejecutar las [pruebas](tests/WP_Image/Test) simplemente:
+
+    $ git clone https://github.com/Josantonius/WP_Image.git
+    
+    $ cd WP_Image
+
+    $ bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
+
+    $ phpunit
+
+### ☑ Tareas pendientes
+
+- [x] Completar tests
+- [ ] Mejorar la documentación
 
 ## Contribuir
+
 1. Comprobar si hay incidencias abiertas o abrir una nueva para iniciar una discusión en torno a un fallo o función.
 1. Bifurca la rama del repositorio en GitHub para iniciar la operación de ajuste.
 1. Escribe una o más pruebas para la nueva característica o expón el error.

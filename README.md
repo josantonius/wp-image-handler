@@ -1,6 +1,6 @@
 # PHP WordPress Image
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/wp_image/v/stable)](https://packagist.org/packages/josantonius/wp_image) [![Total Downloads](https://poser.pugx.org/josantonius/wp_image/downloads)](https://packagist.org/packages/josantonius/wp_image) [![Latest Unstable Version](https://poser.pugx.org/josantonius/wp_image/v/unstable)](https://packagist.org/packages/josantonius/wp_image) [![License](https://poser.pugx.org/josantonius/wp_image/license)](https://packagist.org/packages/josantonius/wp_image)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/wp_image/v/stable)](https://packagist.org/packages/josantonius/wp_image) [![Total Downloads](https://poser.pugx.org/josantonius/wp_image/downloads)](https://packagist.org/packages/josantonius/wp_image) [![Latest Unstable Version](https://poser.pugx.org/josantonius/wp_image/v/unstable)](https://packagist.org/packages/josantonius/wp_image) [![License](https://poser.pugx.org/josantonius/wp_image/license)](https://packagist.org/packages/josantonius/wp_image) [![Travis](https://travis-ci.org/Josantonius/WP_Image.svg)](https://travis-ci.org/Josantonius/WP_Image)
 
 [Versión en español](README-ES.md)
 
@@ -13,21 +13,12 @@ Save images to WordPress.
 - [Quick Start and Examples](#quick-start-and-examples)
 - [Available Methods](#available-methods)
 - [Usage](#usage)
+- [Tests](#tests)
 - [TODO](#-todo)
 - [Contribute](#contribute)
 - [Repository](#repository)
 - [License](#license)
 - [Copyright](#copyright)
-
----
-
-<p align="center"><strong>Take a look at the code</strong></p>
-
-<p align="center">
-  <a href="https://youtu.be/nYA7S3_cxPs" title="Take a look at the code">
-  	<img src="https://raw.githubusercontent.com/Josantonius/PHP-Algorithm/master/resources/youtube-thumbnail.jpg">
-  </a>
-</p>
 
 ---
 
@@ -66,8 +57,8 @@ use Josantonius\WP_Image\WP_Image;
 
 ```php
 WP_Image::save(
-	'https://site.com/image.png', // Image url (Required)
-	'18'                          // Post ID   (Required)
+  'https://site.com/image.png', // Image url (Required)
+  '18'                          // Post ID   (Required)
 );
 ```
 
@@ -75,9 +66,9 @@ WP_Image::save(
 
 ```php
 WP_Image::save(
-	'https://site.com/image.png', // Image url   (Required)
-	'18',                         // Post ID     (Required)
-	true                          // Is featured (Optional | Default: false)
+  'https://site.com/image.png', // Image url   (Required)
+  '18',                         // Post ID     (Required)
+  true                          // Is featured (Optional | Default: false)
 );
 ```
 
@@ -95,7 +86,7 @@ WP_Image::deleteAttachedImages(
 ```php
 WP_Image::deleteAttachedImages(
 
-  '18', // Post ID     (Required)
+  '18', // Post ID      (Required)
   true  // Force delete (Optional | Default: false)
 );
 ```
@@ -109,12 +100,25 @@ WP_Image::save();
 WP_Image::deleteAttachedImages();
 ```
 
-## ☑ TODO
+### Tests 
 
-- [ ] Add tests
-- [ ] Extend method to receive image as data
+To run [tests](tests/WP_Image/Test) simply:
+
+    $ git clone https://github.com/Josantonius/WP_Image.git
+    
+    $ cd WP_Image
+
+    $ bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
+
+    $ phpunit
+
+### ☑ TODO
+
+- [x] Create tests
+- [ ] Improve documentation
 
 ## Contribute
+
 1. Check for open issues or open a new issue to start a discussion around a bug or feature.
 1. Fork the repository on GitHub to start making your changes.
 1. Write one or more tests for the new feature or that expose the bug.

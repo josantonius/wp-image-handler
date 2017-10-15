@@ -23,62 +23,73 @@ class WP_Image {
      * 
      * @since 1.0.0
      *
-     * @param string  $imageUrl → external url image
+     * @param string  $url      → external url image
      * @param int     $postID   → post id
      * @param boolean $featured → if image is featured
      *
      * @return string|false → URI for an attachment file or false on failure
      */
-    public static function save($imageUrl, $postID, $featured = false) {
+    public static function save($url, $postID, $featured = false) {
 
-        $DS = DIRECTORY_SEPARATOR;
-
-        if (filter_var($imageUrl, FILTER_VALIDATE_URL) === false) {
+        if (filter_var($url, FILTER_VALIDATE_URL) === false || !$postID) {
          
             return false;
         }  
 
-        $upload_dir = wp_upload_dir();  
+        $filename = basename($url);
 
-        $image_data = file_get_contents($imageUrl);
-
-        $filename = basename($imageUrl);
-
-        if (wp_mkdir_p($upload_dir['path'])) {
-
-            $file = $upload_dir['path'] . $DS . $filename;
-
-        } else {
-
-            $file = $upload_dir['basedir'] . $DS . $filename;
-        }
-
-        file_put_contents($file, $image_data);
-
-        $wp_filetype = wp_check_filetype($filename, null);
+        $filepath = self::upload($url, $filename);
 
         $attachment = [
 
-            'post_mime_type' => $wp_filetype['type'],
+            'post_mime_type' => wp_check_filetype($filename, null)['type'],
             'post_title'     => sanitize_file_name($filename),
             'post_content'   => '',
             'post_status'    => 'inherit'
         ];
 
-        $attach_id = wp_insert_attachment($attachment, $file, $postID);
+        $attachID = wp_insert_attachment($attachment, $filepath, $postID);
 
-        require_once(ABSPATH . 'wp-admin'.$DS.'includes'.$DS.'image.php');
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
 
-        $attach_data = wp_generate_attachment_metadata($attach_id, $file);
+        $attachData = wp_generate_attachment_metadata($attachID, $filepath);
 
-        wp_update_attachment_metadata($attach_id, $attach_data);
+        wp_update_attachment_metadata($attachID, $attachData);
 
         if ($featured) {
 
-            set_post_thumbnail($postID, $attach_id);
+            set_post_thumbnail($postID, $attachID);
         }
 
-        return wp_get_attachment_url($attach_id);
+        return wp_get_attachment_url($attachID);
+    }
+
+    /**
+     * Upload image.
+     * 
+     * @since 1.0.2
+     *
+     * @param string $url      → external url image
+     * @param string $filename → filename
+     *
+     * @return string|false → filepath
+     */
+    public static function upload($url, $filename) {
+
+        $dir = wp_upload_dir(); 
+        
+        if (!isset($dir['path'], $dir['basedir'])) {
+
+            return false;
+        }
+
+        $path = wp_mkdir_p($dir['path']) ? $dir['path'] : $dir['basedir'];
+
+        $imageData = file_get_contents($url);
+
+        file_put_contents($path . $filename, $imageData);
+
+        return $path . $filename;
     }
 
     /**
@@ -95,13 +106,14 @@ class WP_Image {
 
         $counter = 0;
 
-        $attachments = get_posts( array(
+        $attachments = get_posts([
+
             'post_type'      => 'attachment',
             'posts_per_page' => -1,
             'post_status'    => 'any',
             'post_mime_type' => 'image/jpeg, image/png, image/gif',
             'post_parent'    => $postID
-        ) );
+        ]);
 
         foreach ($attachments as $attachment) {
 

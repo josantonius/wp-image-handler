@@ -1,6 +1,6 @@
 {
     "name":        "josantonius/wp_image",
-    "version":     "1.0.1",
+    "version":     "1.0.2",
     "type":        "library",
     "description": "Save images to WordPress.",
     "keywords": [
@@ -20,6 +20,8 @@
         }
     ],
     "support": {
+        "issues": "https://github.com/josantonius/wp_image/issues",
+        "forum":  "http://stackoverflow.com/tags/josantonius/wp_image",
         "source": "https://github.com/josantonius/wp_image"
     },
     "config": {
@@ -31,12 +33,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Josantonius\\WP_Image\\": "src/"
+            "Josantonius\\WP_Image\\": "src/WP_Image/"
         }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
