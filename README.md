@@ -109,7 +109,6 @@ WP_Image::upload('https://site.com/image.png', '18');
 
 ```php
 WP_Image::upload('https://site.com/image.png', '18', true);
-);
 ```
 
 ### Delete attachments
