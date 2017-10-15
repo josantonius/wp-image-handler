@@ -53,51 +53,75 @@ require __DIR__ . '/vendor/autoload.php';
 use Josantonius\WP_Image\WP_Image;
 ```
 
+## Available Methods
+
+Available methods in this library:
+
+### save($url, $postID, $featured)
+
+Save image and associate it with a specific post.
+
+| Atttribute | Description | Type | Required | Default
+| --- | --- | --- | --- | --- |
+| $url | External url image | string | Yes | |
+| $postID | Post ID | int | Yes | |
+| $featured | Set image as featured | boolean | No | false |
+
+**@return** → string | false → URI for an attachment file or false on failure
+
+### upload($url, $filename)
+
+Upload image to WordPress upload directory.
+
+| Atttribute | Description | Type | Required
+| --- | --- | --- | --- |
+| $url | External url image | string | Yes |
+| $filename| Filename | string | Yes |
+
+**@return** → string | false → Path to upload image or false on failure
+
+### deleteAttachedImages($postID, $force)
+
+Deletes an attachment and all of its derivatives.
+
+| Atttribute | Description | Type | Required
+| --- | --- | --- | --- |
+| $postID | Post ID | int | Yes |
+| $force| Force deletion | boolean | Yes |
+
+**@return** → int | false → Atachments deleted
+
+## Usage
+
+### Upload image
+
+```php
+WP_Image::upload('https://site.com/image.png', 'image.png');
+```
+
 ### Save image
 
 ```php
-WP_Image::save(
-  'https://site.com/image.png', // Image url (Required)
-  '18'                          // Post ID   (Required)
-);
+WP_Image::upload('https://site.com/image.png', '18');
 ```
 
 ### Save featured image
 
 ```php
-WP_Image::save(
-  'https://site.com/image.png', // Image url   (Required)
-  '18',                         // Post ID     (Required)
-  true                          // Is featured (Optional | Default: false)
+WP_Image::upload('https://site.com/image.png', '18', true);
 );
 ```
 
 ### Delete attachments
 
 ```php
-WP_Image::deleteAttachedImages(
-
-  18, // Post ID (Required)
-);
+WP_Image::deleteAttachedImages(18);
 ```
 
 ### Force delete attachments
 
 ```php
-WP_Image::deleteAttachedImages(
-
-  '18', // Post ID      (Required)
-  true  // Force delete (Optional | Default: false)
-);
-```
-
-## Available methods
-
-Available methods in this library:
-
-```php
-WP_Image::save();
-WP_Image::deleteAttachedImages();
+WP_Image::deleteAttachedImages('18', true);
 ```
 
 ### Tests 
@@ -115,7 +139,7 @@ To run [tests](tests/WP_Image/Test) simply:
 ### ☑ TODO
 
 - [x] Create tests
-- [ ] Improve documentation
+- [x] Improve documentation
 
 ## Contribute
 

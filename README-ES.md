@@ -53,51 +53,75 @@ require __DIR__ . '/vendor/autoload.php';
 use Josantonius\WP_Image\WP_Image;
 ```
 
+## Métodos disponibles
+
+Métodos disponibles en esta biblioteca:
+
+### save($url, $postID, $featured)
+
+Guardar imagen y asociarla a un post específico.
+
+| Atributo | Descripción | Tipo de dato | Requerido | Por defecto
+| --- | --- | --- | --- | --- |
+| $url | Url de la imagen | string | Yes | |
+| $postID | Post ID | int | Yes | |
+| $featured | Definir imagen como destacada | boolean | No | false |
+
+**@return** → string | false → URI del archivo adjunto o falso en caso de fallo
+
+### upload($url, $filename)
+
+Cargar imagen al directorio de subidas de WordPress.
+
+| Atributo | Descripción | Tipo de dato | Requerido
+| --- | --- | --- | --- |
+| $url | Url de la imagen | string | Yes |
+| $filename| Nombre del archivo | string | Yes |
+
+**@return** → string | false → Ruta de la imagen subida o falso en caso de fallo
+
+### deleteAttachedImages($postID, $force)
+
+Borra imágenes adjuntas y todos sus derivados.
+
+| Atributo | Descripción | Tipo de dato | Requerido
+| --- | --- | --- | --- |
+| $postID | Post ID | int | Yes |
+| $force| Forzar eliminación | boolean | Yes |
+
+**@return** → int | false → Número de imágenes adjuntas borradas
+
+## Uso
+
+### Cargar imagen
+
+```php
+WP_Image::upload('https://site.com/image.png', 'image.png');
+```
+
 ### Guardar imagen
 
 ```php
-WP_Image::save(
-	'http://site.com/image.png', // Imagen url (Requerido)
-	'18'                         // Post ID    (Requerido)
-);
+WP_Image::upload('https://site.com/image.png', '18');
 ```
 
 ### Guardar imagen destacada
 
 ```php
-WP_Image::save(
-	'http://site.com/image.png', // Imagen url (Requerido)
-	'18',                        // Post ID    (Requerido)
-	true                         // Destacada  (Opcional | False por defecto)
+WP_Image::upload('https://site.com/image.png', '18', true);
 );
 ```
 
-### Eliminar adjuntos
+### Borrar imágenes adjuntas
 
 ```php
-WP_Image::deleteAttachedImages(
-
-  18, // Post ID (Required)
-);
+WP_Image::deleteAttachedImages(18);
 ```
 
-### Forzar eliminado de adjuntos
+### Forzar borrado de imágenes adjuntas
 
 ```php
-WP_Image::deleteAttachedImages(
-
-  '18', // Post ID     (Required)
-  true  // Force delete (Optional | Default: false)
-);
-```
-
-## Métodos disponibles
-
-Métodos disponibles en esta biblioteca:
-
-```php
-WP_Image::save();
-WP_Image::deleteAttachedImages();
+WP_Image::deleteAttachedImages('18', true);
 ```
 
 ### Tests 

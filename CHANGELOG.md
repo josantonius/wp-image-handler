@@ -22,6 +22,26 @@
 
 * Added `Josantonius\WP_Image\WP_Image::uploadImage` method.
 
+* Added `Josantonius\WP_Image\Test\ImageTest` class.
+* Added `Josantonius\WP_Image\Test\ImageTest->setUp()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testUploadJPG()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testUploadPNG()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testUploadGIF()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testUploadUnknownImage()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testSaveJPG()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testSavePNG()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testSaveGIF()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testSaveFeaturedJPG()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testSaveFeaturedPNG()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testSaveFeaturedGIF()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testSaveUnknownImage()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testSaveImageFromUnknownPostID()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testDeleteAttachedImages()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testForceDeleteAttachedImages()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->testDeleteAttachedImagesFromUnknownPostID()` method.
+* Added `Josantonius\WP_Image\Test\ImageTest->tearDown()` method.
+
+
 ## 1.0.1 - 2017-08-11
 
 * Added `Josantonius\WP_Image\WP_Image::deleteAttachment` method.

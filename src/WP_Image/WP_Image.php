@@ -19,7 +19,7 @@ namespace Josantonius\WP_Image;
 class WP_Image {
 
     /**
-     * Save image from url to WordPress.
+     * Save image and associate it with a specific post.
      * 
      * @since 1.0.0
      *
@@ -31,7 +31,9 @@ class WP_Image {
      */
     public static function save($url, $postID, $featured = false) {
 
-        if (filter_var($url, FILTER_VALIDATE_URL) === false || !$postID) {
+        $url = filter_var($url, FILTER_VALIDATE_URL);
+
+        if ($url === false || get_post_status($postID) === false) {
          
             return false;
         }  
@@ -65,14 +67,14 @@ class WP_Image {
     }
 
     /**
-     * Upload image.
+     * Upload image to WordPress upload directory.
      * 
      * @since 1.0.2
      *
      * @param string $url      → external url image
      * @param string $filename → filename
      *
-     * @return string|false → filepath
+     * @return string|false → path to upload image or false on failure
      */
     public static function upload($url, $filename) {
 
@@ -85,11 +87,14 @@ class WP_Image {
 
         $path = wp_mkdir_p($dir['path']) ? $dir['path'] : $dir['basedir'];
 
-        $imageData = file_get_contents($url);
+        $path = rtrim($path, '/') . '/';
 
-        file_put_contents($path . $filename, $imageData);
+        if ($imageData = @file_get_contents($url)) {
 
-        return $path . $filename;
+            $state = @file_put_contents($path . $filename, $imageData);
+        }
+
+        return (isset($state) && $state) ? $path . $filename : false;
     }
 
     /**
@@ -100,9 +105,11 @@ class WP_Image {
      * @param int     $postID → post id
      * @param boolean $force  → force deletion 
      *
-     * @return int → attachments deleted
+     * @return int|false → attachments deleted
      */
     public static function deleteAttachedImages($postID, $force = false) {
+
+        if (get_post_status($postID) === false) { return false; }  
 
         $counter = 0;
 
