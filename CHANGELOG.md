@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 1.0.3 - 2018-01-04
+
+* Implemented `PHP Mess Detector` to detect inconsistencies in code styles.
+
+* Implemented `PHP Code Beautifier and Fixer` to fixing errors automatically.
+
+* Implemented `PHP Coding Standards Fixer` to organize PHP code automatically according to PSR standards.
+
+* Implemented `WordPress PHPCS code standard` from all library PHP files.
+
+* Implemented `Codacy` to automates code reviews and monitors code quality over time.
+
+* Implemented `Codecov` to coverage reports.
+
+* Deprecated `Josantonius\WP_Register\WP_Register::deleteAttachedImages()` method.
+
+* Added `Josantonius\WP_Register\WP_Register::delete_all_attachment()` method.
+
 ## 1.0.2 - 2017-10-15
 
 * Unit tests supported by `PHPUnit` were added.

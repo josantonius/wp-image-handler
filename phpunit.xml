@@ -11,16 +11,15 @@
          syntaxCheck="false"
          bootstrap="tests/bootstrap.php"
 >
-
     <testsuites>
         <testsuite name="WP_Image Test Suite">
-            <directory>tests/WP_Image/</directory>
+            <file>tests/class-image-test.php</file>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>src/WP_Register</directory>
+            <directory>src</directory>
         </whitelist>
     </filter>
 </phpunit>

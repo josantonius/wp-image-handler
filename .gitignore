@@ -1,3 +1,12 @@
+.git*/
+vendor/
+docs/*.pyc
+docs/_build
+build/artifacts/
 composer.phar
 composer.lock
-.git*/
+composer-test.lock
+phpcbf-fixed.diff
+.idea
+.DS_STORE
+.php_cs.cache

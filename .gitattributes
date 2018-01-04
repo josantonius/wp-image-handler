@@ -1,16 +1,14 @@
 /tests export-ignore
-/src/bootstrap.php export-ignore
-/vendor export-ignore
-/bin export-ignore
-.gitattributes export-ignore
-.gitignore export-ignore
-_config.yml export-ignore
-.travis.yml export-ignore
 CHANGELOG.md export-ignore
-phpunit.xml.dist export-ignore
-CONDUCT.md export-ignore
-contributors.txt export-ignore
 README.md export-ignore
 README-ES.md export-ignore
+CONDUCT.md
+_config.yml
+phpcs.xml export-ignore
+phpunit.xml export-ignore
+phpmd.xml export-ignore
+.travis.yml export-ignore
 .editorconfig export-ignore
-composer.lock export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+.php_cs.dist export-ignore
