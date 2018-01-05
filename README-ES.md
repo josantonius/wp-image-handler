@@ -1,17 +1,17 @@
 # PHP WordPress Image
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/wp_image/v/stable)](https://packagist.org/packages/josantonius/wp_image) [![Total Downloads](https://poser.pugx.org/josantonius/wp_image/downloads)](https://packagist.org/packages/josantonius/wp_image) [![Latest Unstable Version](https://poser.pugx.org/josantonius/wp_image/v/unstable)](https://packagist.org/packages/josantonius/wp_image) [![License](https://poser.pugx.org/josantonius/wp_image/license)](https://packagist.org/packages/josantonius/wp_image) [![Travis](https://travis-ci.org/Josantonius/WP_Image.svg)](https://travis-ci.org/Josantonius/WP_Image)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/WP_Image/v/stable)](https://packagist.org/packages/josantonius/WP_Image) [![Latest Unstable Version](https://poser.pugx.org/josantonius/WP_Image/v/unstable)](https://packagist.org/packages/josantonius/WP_Image) [![License](https://poser.pugx.org/josantonius/WP_Image/license)](LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9a6e81cf618944ad8f18161a319d0812)](https://www.codacy.com/app/Josantonius/WP_Image?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Josantonius/WP_Image&amp;utm_campaign=Badge_Grade) [![Total Downloads](https://poser.pugx.org/josantonius/WP_Image/downloads)](https://packagist.org/packages/josantonius/WP_Image) [![Travis](https://travis-ci.org/Josantonius/WP_Image.svg)](https://travis-ci.org/Josantonius/WP_Image) [![WP](https://img.shields.io/badge/WordPress-Standar-1abc9c.svg)](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/) [![CodeCov](https://codecov.io/gh/Josantonius/WP_Image/branch/master/graph/badge.svg)](https://codecov.io/gh/Josantonius/WP_Image)
 
 [English version](README.md)
 
-Guardar imágenes en WordPress.
+Añadir, actualizar y borrar imágenes de posts en WordPress.
 
 ---
 
-- [Instalación](#instalación)
 - [Requisitos](#requisitos)
-- [Cómo empezar y ejemplos](#cómo-empezar-y-ejemplos)
+- [Instalación](#instalación)
 - [Métodos disponibles](#métodos-disponibles)
+- [Cómo empezar](#cómo-empezar)
 - [Uso](#uso)
 - [Tests](#tests)
 - [Tareas pendientes](#-tareas-pendientes)
@@ -22,137 +22,179 @@ Guardar imágenes en WordPress.
 
 ---
 
+## Requisitos
+
+Esta biblioteca es soportada por versiones de **PHP 5.6** o superiores y es compatible con versiones de **HHVM 3.0** o superiores.
+
 ## Instalación 
 
-La mejor forma de instalar esta extensión es a través de [composer](http://getcomposer.org/download/).
+La mejor forma de instalar esta extensión es a través de [Composer](http://getcomposer.org/download/).
 
-Para instalar PHP WordPress Image library, simplemente escribe:
+Para instalar **PHP WP_Image library**, simplemente escribe:
 
     $ composer require Josantonius/WP_Image
 
-El comando anterior sólo instalará los archivos necesarios, si prefieres descargar todo el código fuente (incluyendo tests, directorio vendor, excepciones no utilizadas, documentos...) puedes utilizar:
+El comando anterior sólo instalará los archivos necesarios, si prefieres **descargar todo el código fuente** puedes utilizar:
 
     $ composer require Josantonius/WP_Image --prefer-source
 
-También puedes clonar el repositorio completo con Git:
+También puedes **clonar el repositorio** completo con Git:
 
     $ git clone https://github.com/Josantonius/WP_Image.git
-    
-## Requisitos
 
-Esta biblioteca es soportada por versiones de PHP 5.6 o superiores y es compatible con versiones de HHVM 3.0 o superiores.
+O **instalarlo manualmente**:
 
-## Cómo empezar y ejemplos
+[Download WP_Image.php](https://raw.githubusercontent.com/Josantonius/WP_Image/master/src/class-wp-image.php):
 
-Para utilizar esta biblioteca, simplemente:
-
-```php
-<?php
-require __DIR__ . '/vendor/autoload.php';
-
-use Josantonius\WP_Image\WP_Image;
-```
+    $ wget https://raw.githubusercontent.com/Josantonius/WP_Image/master/src/class-wp-image.php
 
 ## Métodos disponibles
 
 Métodos disponibles en esta biblioteca:
 
-### save($url, $postID, $featured)
+### - Guardar imagen y asociarla a un post específico:
 
-Guardar imagen y asociarla a un post específico.
+```php
+WP_Image::save($url, $post_ID, $featured);
+```
 
 | Atributo | Descripción | Tipo de dato | Requerido | Por defecto
 | --- | --- | --- | --- | --- |
-| $url | Url de la imagen | string | Yes | |
-| $postID | Post ID | int | Yes | |
-| $featured | Definir imagen como destacada | boolean | No | false |
+| $url | Url de la imagen. | string | Yes | |
+| $post_ID | Post ID. | int | Yes | |
+| $featured | Definir imagen como destacada. | boolean | No | false |
 
-**@return** → string | false → URI del archivo adjunto o falso en caso de fallo
+**@return** (string|false) → URI del archivo adjunto o falso en caso de fallo.
 
-### upload($url, $filename)
+### - Cargar imagen al directorio de subidas de WordPress:
 
-Cargar imagen al directorio de subidas de WordPress.
-
-| Atributo | Descripción | Tipo de dato | Requerido
-| --- | --- | --- | --- |
-| $url | Url de la imagen | string | Yes |
-| $filename| Nombre del archivo | string | Yes |
-
-**@return** → string | false → Ruta de la imagen subida o falso en caso de fallo
-
-### deleteAttachedImages($postID, $force)
-
-Borra imágenes adjuntas y todos sus derivados.
+```php
+WP_Image::upload($url, $filename);
+```
 
 | Atributo | Descripción | Tipo de dato | Requerido
 | --- | --- | --- | --- |
-| $postID | Post ID | int | Yes |
-| $force| Forzar eliminación | boolean | Yes |
+| $url | Url de la imagen. | string | Yes |
+| $filename| Nombre del archivo. | string | Yes |
 
-**@return** → int | false → Número de imágenes adjuntas borradas
+**@return** (string|false) → Ruta de la imagen subida o falso en caso de fallo.
+
+### Borra imágenes adjuntas y todos sus derivados:
+
+```php
+WP_Image::delete_all_attachment($post_ID, $force);
+```
+
+| Atributo | Descripción | Tipo de dato | Requerido
+| --- | --- | --- | --- |
+| $post_ID | Post ID. | int | Yes |
+| $force| Forzar borrado. | boolean | Yes |
+
+**@return** (int|false) → Número de imágenes adjuntas borradas.
+
+## Cómo empezar
+
+Para utilizar esta clase con **Composer**:
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Josantonius\WP_Image;
+```
+
+Si la instalaste **manualmente**, utiliza:
+
+```php
+require_once __DIR__ . '/class-wp-image.php';
+
+use Josantonius\WP_Image\WP_Image;
+```
 
 ## Uso
 
-### Cargar imagen
+Ejemplo de uso para esta biblioteca:
+
+### - Cargar imagen:
 
 ```php
 WP_Image::upload('https://site.com/image.png', 'image.png');
 ```
 
-### Guardar imagen
+### - Guardar imagen:
 
 ```php
 WP_Image::upload('https://site.com/image.png', '18');
 ```
 
-### Guardar imagen destacada
+### - Guardar imagen destacada:
 
 ```php
 WP_Image::upload('https://site.com/image.png', '18', true);
 ```
 
-### Borrar imágenes adjuntas
+### - Borrar imágenes adjuntas:
 
 ```php
-WP_Image::deleteAttachedImages(18);
+WP_Image::delete_all_attachment(18);
 ```
 
-### Forzar borrado de imágenes adjuntas
+### - Forzar borrado de imágenes adjuntas:
 
 ```php
-WP_Image::deleteAttachedImages('18', true);
+WP_Image::delete_all_attachment('18', true);
 ```
 
-### Tests 
+## Tests 
 
-Para ejecutar las [pruebas](tests/WP_Image/Test) simplemente:
+Para ejecutar las [pruebas](tests) necesitarás [Composer](http://getcomposer.org/download/) y seguir los siguientes pasos:
 
     $ git clone https://github.com/Josantonius/WP_Image.git
     
     $ cd WP_Image
 
-    $ bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
+    $ composer install
 
-    $ phpunit
+Ejecutar pruebas unitarias con [PHPUnit](https://phpunit.de/):
 
-### ☑ Tareas pendientes
+    $ composer phpunit
 
-- [x] Completar tests
-- [ ] Mejorar la documentación
+Ejecutar pruebas de estándares de código para [WordPress](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/) con [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
+
+    $ composer phpcs
+
+Ejecutar pruebas con [PHP Mess Detector](https://phpmd.org/) para detectar inconsistencias en el estilo de codificación:
+
+    $ composer phpmd
+
+Ejecutar todas las pruebas anteriores:
+
+    $ composer tests
+
+## ☑ Tareas pendientes
+
+- [ ] Añadir nueva funcionalidad
+- [ ] Mejorar pruebas
+- [ ] Mejorar documentación
+- [ ] Refactorizar código
 
 ## Contribuir
 
-1. Comprobar si hay incidencias abiertas o abrir una nueva para iniciar una discusión en torno a un fallo o función.
-1. Bifurca la rama del repositorio en GitHub para iniciar la operación de ajuste.
-1. Escribe una o más pruebas para la nueva característica o expón el error.
-1. Haz cambios en el código para implementar la característica o reparar el fallo.
-1. Envía pull request para fusionar los cambios y que sean publicados.
+Si deseas colaborar, puedes echar un vistazo a la lista de
+[issues](https://github.com/Josantonius/WP_Image/issues) o [tareas pendientes](#-tareas-pendientes).
 
-Esto está pensado para proyectos grandes y de larga duración.
+**Pull requests**
+
+* [Fork and clone](https://help.github.com/articles/fork-a-repo).
+* Ejecuta el comando `composer install` para instalar dependencias.
+  Esto también instalará las [dependencias de desarrollo](https://getcomposer.org/doc/03-cli.md#install).
+* Ejecuta el comando `composer fix` para estandarizar el código.
+* Ejecuta las [pruebas](#tests).
+* Crea una nueva rama (**branch**), **commit**, **push** y envíame un
+  [pull request](https://help.github.com/articles/using-pull-requests).
 
 ## Repositorio
 
-Los archivos de este repositorio se crearon y subieron automáticamente con [Reposgit Creator](https://github.com/Josantonius/BASH-Reposgit).
+La estructura de archivos de este repositorio se creó con [PHP-Skeleton](https://github.com/Josantonius/PHP-Skeleton).
 
 ## Licencia
 
@@ -160,7 +202,7 @@ Este proyecto está licenciado bajo **licencia MIT**. Consulta el archivo [LICEN
 
 ## Copyright
 
-2017 Josantonius, [josantonius.com](https://josantonius.com/)
+2017 -2018 Josantonius, [josantonius.com](https://josantonius.com/)
 
 Si te ha resultado útil, házmelo saber :wink:
 
