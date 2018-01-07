@@ -47,7 +47,6 @@ matrix:
       env: WP_VERSION=latest
   allow_failures:
     - php: nightly
-    - php: hhvm
 
 before_script:
   - export PATH="./vendor/bin:$PATH"
