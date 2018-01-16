@@ -368,7 +368,7 @@
 	Ref: https://make.wordpress.org/core/handbook/coding-standards/php/#error-control-operator
 	#############################################################################
 	-->
-	<rule ref="Generic.PHP.NoSilencedErrors"/>
+<!--<rule ref="Generic.PHP.NoSilencedErrors"/>-->
 
 
 	<!--
