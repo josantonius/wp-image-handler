@@ -7,7 +7,7 @@
  * @copyright 2017 - 2018 (c) Josantonius - WP_Image
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
  * @link      https://github.com/Josantonius/WP_Image
- * @since      1.0.2
+ * @since     1.0.2
  */
 
 require __DIR__ . '/../vendor/autoload.php';
