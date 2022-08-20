@@ -1,6 +1,7 @@
 # PHP WordPress Image
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/WP_Image/v/stable)](https://packagist.org/packages/josantonius/WP_Image) [![Latest Unstable Version](https://poser.pugx.org/josantonius/WP_Image/v/unstable)](https://packagist.org/packages/josantonius/WP_Image) [![License](https://poser.pugx.org/josantonius/WP_Image/license)](LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9a6e81cf618944ad8f18161a319d0812)](https://www.codacy.com/app/Josantonius/WP_Image?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Josantonius/WP_Image&amp;utm_campaign=Badge_Grade) [![Total Downloads](https://poser.pugx.org/josantonius/WP_Image/downloads)](https://packagist.org/packages/josantonius/WP_Image) [![Travis](https://travis-ci.org/Josantonius/WP_Image.svg)](https://travis-ci.org/Josantonius/WP_Image) [![WP](https://img.shields.io/badge/WordPress-Standar-1abc9c.svg)](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/) [![CodeCov](https://codecov.io/gh/Josantonius/WP_Image/branch/master/graph/badge.svg)](https://codecov.io/gh/Josantonius/WP_Image)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/wp-image-handler/v/stable)](https://packagist.org/packages/josantonius/wp-image-handler)
+[![License](https://poser.pugx.org/josantonius/wp-image-handler/license)](LICENSE)
 
 [Versión en español](README-ES.md)
 
@@ -14,11 +15,8 @@ Adding, updating and deleting images from WordPress posts.
 - [Quick Start](#quick-start)
 - [Usage](#usage)
 - [Tests](#tests)
-- [TODO](#-todo)
-- [Contribute](#contribute)
-- [Repository](#repository)
+- [Sponsor](#Sponsor)
 - [License](#license)
-- [Copyright](#copyright)
 
 ---
 
@@ -32,27 +30,27 @@ The preferred way to install this extension is through [Composer](http://getcomp
 
 To install **WP_Image library**, simply:
 
-    $ composer require Josantonius/WP_Image
+    composer require josantonius/wp-image-handler
 
 The previous command will only install the necessary files, if you prefer to **download the entire source code** you can use:
 
-    $ composer require Josantonius/WP_Image --prefer-source
+    composer require josantonius/wp-image-handler --prefer-source
 
 You can also **clone the complete repository** with Git:
 
-    $ git clone https://github.com/Josantonius/WP_Image.git
+    git clone https://github.com/josantonius/wp-image-handler.git
 
 Or **install it manually**:
 
-[Download WP_Image.php](https://raw.githubusercontent.com/Josantonius/WP_Image/master/src/class-wp-image.php):
+[Download WP_Image.php](https://raw.githubusercontent.com/josantonius/wp-image-handler/master/src/class-wp-image.php):
 
-    $ wget https://raw.githubusercontent.com/Josantonius/WP_Image/master/src/class-wp-image.php
+    wget https://raw.githubusercontent.com/josantonius/wp-image-handler/master/src/class-wp-image.php
 
 ## Available Methods
 
 Available methods in this library:
 
-### - Save image and associate it with a specific post:
+### - Save image and associate it with a specific post
 
 ```php
 WP_Image::save($url, $post_ID, $featured);
@@ -66,7 +64,7 @@ WP_Image::save($url, $post_ID, $featured);
 
 **@return** (string|false) → URI for an attachment file or false on failure.
 
-### - Upload image to WordPress upload directory:
+### - Upload image to WordPress upload directory
 
 ```php
 WP_Image::upload($url, $filename);
@@ -79,7 +77,7 @@ WP_Image::upload($url, $filename);
 
 **@return** (string|false) → Path to upload image or false on failure.
 
-### - Deletes an attachment and all of its derivatives:
+### - Deletes an attachment and all of its derivatives
 
 ```php
 WP_Image::delete_all_attachment($post_ID, $force);
@@ -114,98 +112,71 @@ use Josantonius\WP_Image\WP_Image;
 
 Example of use for this library:
 
-### - Upload image:
+### - Upload image
 
 ```php
 WP_Image::upload('https://site.com/image.png', 'image.png');
 ```
 
-### - Save image:
+### - Save image
 
 ```php
 WP_Image::upload('https://site.com/image.png', '18');
 ```
 
-### - Save featured image:
+### - Save featured image
 
 ```php
 WP_Image::upload('https://site.com/image.png', '18', true);
 ```
 
-### - Delete attachments:
+### - Delete attachments
 
 ```php
 WP_Image::delete_all_attachment(18);
 ```
 
-### - Force delete attachments:
+### - Force delete attachments
 
 ```php
 WP_Image::delete_all_attachment('18', true);
 ```
 
-## Tests 
+## Tests
 
 To run [tests](tests) you just need [composer](http://getcomposer.org/download/) and to execute the following:
 
-    $ git clone https://github.com/Josantonius/WP_Image.git
+    git clone https://github.com/josantonius/wp-image-handler.git
     
-    $ cd WP_Image
+    cd WP_Image
 
-    $ bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
+    bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
 
-    $ composer install
+    composer install
 
 Run unit tests with [PHPUnit](https://phpunit.de/):
 
-    $ composer phpunit
+    composer phpunit
 
 Run [WordPress](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/) code standard tests with [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
 
-    $ composer phpcs
+    composer phpcs
 
 Run [PHP Mess Detector](https://phpmd.org/) tests to detect inconsistencies in code style:
 
-    $ composer phpmd
+    composer phpmd
 
 Run all previous tests:
 
-    $ composer tests
+    composer tests
 
-## ☑ TODO
+## Sponsor
 
-- [ ] Add new feature.
-- [ ] Improve tests.
-- [ ] Improve documentation.
-- [ ] Refactor code for disabled code style rules. See [phpmd.xml](phpmd.xml) and [.php_cs.dist](.php_cs.dist).
-
-## Contribute
-
-If you would like to help, please take a look at the list of
-[issues](https://github.com/Josantonius/WP_Image/issues) or the [To Do](#-todo) checklist.
-
-**Pull requests**
-
-* [Fork and clone](https://help.github.com/articles/fork-a-repo).
-* Run the command `composer install` to install the dependencies.
-  This will also install the [dev dependencies](https://getcomposer.org/doc/03-cli.md#install).
-* Run the command `composer fix` to excute code standard fixers.
-* Run the [tests](#tests).
-* Create a **branch**, **commit**, **push** and send me a
-  [pull request](https://help.github.com/articles/using-pull-requests).
-
-## Repository
-
-The file structure from this repository was created with [PHP-Skeleton](https://github.com/Josantonius/PHP-Skeleton).
+If this project helps you to reduce your development time,
+[you can sponsor me](https://github.com/josantonius#sponsor) to support my open source work :blush:
 
 ## License
 
-This project is licensed under **MIT license**. See the [LICENSE](LICENSE) file for more info.
+This repository is licensed under the [MIT License](LICENSE).
 
-## Copyright
-
-2017 - 2018 Josantonius, [josantonius.com](https://josantonius.com/)
-
-If you find it useful, let me know :wink:
-
-You can contact me on [Twitter](https://twitter.com/Josantonius) or through my [email](mailto:hello@josantonius.com).
+Copyright © 2017-2022, [Josantonius](https://github.com/josantonius#contact)

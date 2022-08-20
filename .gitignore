@@ -1,4 +1,3 @@
-.git*/
 vendor/
 docs/*.pyc
 docs/_build
@@ -10,3 +9,6 @@ phpcbf-fixed.diff
 .idea
 .DS_STORE
 .php_cs.cache
+wp-image-handler.code-workspace
+.repository.md
+.vscode/

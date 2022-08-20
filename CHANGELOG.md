@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2022-08-20
+
+* The repository was archived.
+
 ## 1.0.3 - 2018-01-04
 
 * Implemented `PHP Mess Detector` to detect inconsistencies in code styles.
@@ -58,7 +62,6 @@
 * Added `Josantonius\WP_Image\Test\ImageTest->testForceDeleteAttachedImages()` method.
 * Added `Josantonius\WP_Image\Test\ImageTest->testDeleteAttachedImagesFromUnknownPostID()` method.
 * Added `Josantonius\WP_Image\Test\ImageTest->tearDown()` method.
-
 
 ## 1.0.1 - 2017-08-11
 
